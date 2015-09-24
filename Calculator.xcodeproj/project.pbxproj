@@ -12,6 +12,7 @@
 		C46CC99C1BB39C3D00408334 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C46CC99A1BB39C3D00408334 /* Main.storyboard */; };
 		C46CC99E1BB39C3D00408334 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C46CC99D1BB39C3D00408334 /* Assets.xcassets */; };
 		C46CC9A11BB39C3D00408334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C46CC99F1BB39C3D00408334 /* LaunchScreen.storyboard */; };
+		C46CC9AA1BB402D500408334 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46CC9A91BB402D500408334 /* CalculatorBrain.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		C46CC99D1BB39C3D00408334 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C46CC9A01BB39C3D00408334 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C46CC9A21BB39C3D00408334 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C46CC9A91BB402D500408334 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				C46CC9981BB39C3D00408334 /* CalculatorViewController.swift */,
 				C46CC99A1BB39C3D00408334 /* Main.storyboard */,
+				C46CC9A91BB402D500408334 /* CalculatorBrain.swift */,
 				C46CC9A81BB39C4700408334 /* Supporting Files */,
 			);
 			path = Calculator;
@@ -142,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C46CC9AA1BB402D500408334 /* CalculatorBrain.swift in Sources */,
 				C46CC9991BB39C3D00408334 /* CalculatorViewController.swift in Sources */,
 				C46CC9971BB39C3D00408334 /* AppDelegate.swift in Sources */,
 			);
