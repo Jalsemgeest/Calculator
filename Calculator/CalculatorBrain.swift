@@ -11,9 +11,11 @@ import Foundation
 class CalculatorBrain
 {
     
+    // MARK: - Private Properties
     // Only computed properties
     private enum Op: CustomStringConvertible {
         case Operand(Double)
+        case NullaryOperation(String, () -> Double)
         case UnaryOperation(String, Double -> Double)
         case BinaryOperation(String, (Double, Double) -> Double)
         
@@ -22,6 +24,8 @@ class CalculatorBrain
                 switch self {
                 case .Operand(let operand):
                     return "\(operand)"
+                case .NullaryOperation(let symbol, _):
+                    return symbol
                 case .UnaryOperation(let symbol, _):
                     return symbol
                 case .BinaryOperation(let symbol, _):
@@ -32,9 +36,11 @@ class CalculatorBrain
     }
     
     private var opStack = [Op]()
-    
     private var knownOps = [String:Op]()
 
+    
+    // MARK: - Init
+    
     init()
     {
         func learnOp(op: Op)
@@ -46,17 +52,26 @@ class CalculatorBrain
         learnOp(Op.BinaryOperation("+", +))
         learnOp(Op.BinaryOperation("−") { $1 - $0 })
         learnOp(Op.UnaryOperation("√", sqrt))
+        learnOp(Op.UnaryOperation("sin", sin))
+        learnOp(Op.UnaryOperation("cos", cos))
+        learnOp(Op.NullaryOperation("π", { M_PI }))
+        learnOp(Op.UnaryOperation("±", { -$0 }))
+        
     }
+    
+    
+    // MARK: - Private functions
     
     private func evaluate(ops: [Op]) -> (result: Double?, remainingOps:[Op])
     {
-        
         if !ops.isEmpty {
             var remainingOps = ops
             let op = remainingOps.removeLast()
             switch op {
             case .Operand(let operand):
                 return (operand, remainingOps)
+            case .NullaryOperation(_, let operation):
+                return (operation(), remainingOps)
             case .UnaryOperation(_, let operation):
                 let operandEvaluation = evaluate(remainingOps)
                 if let operand = operandEvaluation.result {
@@ -76,6 +91,9 @@ class CalculatorBrain
         return (nil, ops)
     }
     
+    
+    // MARK: - Public API
+    // Public evaluate function
     func evaluate() -> Double?
     {
         let (result, remainder) = evaluate(opStack)
@@ -95,6 +113,10 @@ class CalculatorBrain
             opStack.append(operation)
         }
         return evaluate()
+    }
+    
+    func showStack() -> String? {
+        return opStack.map({ "\($0)" }).joinWithSeparator(" ")
     }
     
 }
